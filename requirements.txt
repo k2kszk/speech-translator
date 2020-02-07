@@ -1,0 +1,6 @@
+Flask
+google-cloud-speech
+google-cloud-translate
+google-cloud-texttospeech
+grpcio
+gunicorn

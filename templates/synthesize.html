@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+   <title>音読修行</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+
+    <style> 
+         #text {width: 100%; height: 300px; font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 22px;}
+         #accent {font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 25px;}
+         #en-US {font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 25px;}
+         #en-GB {font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 25px;}
+         #en-AU {font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 25px;}
+         #en-IN {font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 25px;}
+         #download {font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 30px;}
+
+    </style>
+    
+
+    <script type="text/javascript">
+        // ▼HTMLの読み込み直後に実行：
+        document.addEventListener('DOMContentLoaded', function() {
+        
+           // ▼2階層目の要素を全て非表示にする
+           var allSubBoxes = document.getElementsByClassName("subbox");
+           for( var i=0 ; i<allSubBoxes.length ; i++) {
+              allSubBoxes[i].style.display = 'none';
+           }
+        
+        });
+    </script>
+    <script type="text/javascript">
+        // ▼HTMLの読み込み直後に実行：
+        document.addEventListener('DOMContentLoaded', function() {
+        
+           // ▼全てのプルダウンメニューセットごとに処理
+           var mainBoxes = document.getElementsByClassName('pulldownset');
+           for( var i=0 ; i<mainBoxes.length ; i++) {
+           
+              var mainSelect = mainBoxes[i].getElementsByClassName("mainselect");   // 1階層目(メイン)のプルダウンメニュー（※後でvalue属性値を参照するので、select要素である必要があります。）
+              mainSelect[0].onchange = function () {
+                 // ▼同じ親要素に含まれているすべての2階層目(サブ)要素を消す
+                 var subBox = this.parentNode.getElementsByClassName("subbox");   // 同じ親要素に含まれる.subbox（※select要素に限らず、どんな要素でも構いません。）
+                 for( var j=0 ; j<subBox.length ; j++) {
+                    subBox[j].style.display = 'none';
+                 }
+           
+                 // ▼指定された2階層目(サブ)要素だけを表示する
+                 if( this.value ) {
+                    var targetSub = document.getElementById( this.value );   // 「1階層目のプルダウンメニューで選択されている項目のvalue属性値」と同じ文字列をid属性値に持つ要素を得る
+                    targetSub.style.display = 'inline';
+                 }
+              }
+           
+           }
+        
+        });
+    </script>
+</head>
+
+<body>
+    
+    <form action="/synthesize" method="POST">
+
+      <div class="pulldownset">
+<br>
+         <!-- ========================================== -->
+         <select id="accent" class="mainselect form-control" name="accent">
+            <option value="">アクセントを選んでください。</option>
+            <option value="en-US">アメリカ</option>
+            <option value="en-GB">イギリス</option>
+            <option value="en-AU">オーストラリア</option>
+            <option value="en-IN">インド</option>
+         </select>
+<br>   
+         <!-- ================================================================ -->
+         <select id="en-US" class="subbox form-control" name="voiceId[]">
+            <option value="">音声を選んでください。</option>
+            <option value="en-US-Wavenet-A">ジェームス</option>
+            <option value="en-US-Wavenet-B">ベンジャミン</option>
+            <option value="en-US-Wavenet-C">エマ</option>
+            <option value="en-US-Wavenet-D">ダニエル</option>
+            <option value="en-US-Wavenet-E">ソフィア</option>
+            <option value="en-US-Wavenet-F">スカーレット</option>
+         </select>
+   
+         <!-- ================================================================ -->
+         <select id="en-GB" class="subbox form-control" name="voiceId[]">
+            <option value="">音声を選んでください。</option>
+            <option value="en-GB-Wavenet-A">アメリア</option>
+            <option value="en-GB-Wavenet-B">ハリー</option>
+            <option value="en-GB-Wavenet-C">エミリー</option>
+            <option value="en-GB-Wavenet-D">ジョージ</option>
+         </select>
+   
+         <!-- ================================================================ -->
+         <select id="en-AU" class="subbox form-control" name="voiceId[]">
+            <option value="">音声を選んでください。</option>
+            <option value="en-AU-Wavenet-A">シャーロット</option>
+            <option value="en-AU-Wavenet-B">ウィリアム</option>
+            <option value="en-AU-Wavenet-C">オリビア</option>
+            <option value="en-AU-Wavenet-D">ノア</option>
+         </select>
+   
+         <!-- ================================================================ -->
+         <select id="en-IN" class="subbox form-control" name="voiceId[]">
+            <option value="">音声を選んでください。</option>
+            <option value="en-IN-Wavenet-A">ダーシャ</option>
+            <option value="en-IN-Wavenet-B">ハリッシュ</option>
+            <option value="en-IN-Wavenet-C">サイ</option>
+         </select>
+<br>
+<br>   
+      </div>
+      <textarea id="text" class="form-control" name="text">{{ translationresult }}</textarea>
+<br>
+      <div style="text-align:center">
+         <input id="download" class="btn btn-primary" type="submit" value="音声をダウンロード">
+      </div>
+   
+   </form>
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
