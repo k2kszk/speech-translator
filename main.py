@@ -39,7 +39,6 @@ def index():
         
         resultsentence = list()
         for result in response.results:
-            # The first alternative is the most likely one for this portion.
             sentence = '{}'.format(result.alternatives[0].transcript)
             resultsentence.append(sentence)
         
@@ -87,7 +86,6 @@ def synthesize():
 
         response = client.synthesize_speech(input_text, voice, audio_config)
 
-        # The response's audio_content is binary.
         with open('/tmp/output.mp3', 'wb') as out:
             out.write(response.audio_content)
 
