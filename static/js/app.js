@@ -52,8 +52,6 @@ function startRecording() {
 		*/
 		audioContext = new AudioContext();
 
-		//update the format 
-		document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
 
 		/*  assign to gumStream for later use  */
 		gumStream = stream;
@@ -134,7 +132,10 @@ function createDownloadLink(blob) {
 	upload.href="#";
 	upload.innerHTML = "録音をアップロード";
 	upload.style.fontSize = "30px";
-	upload.style.fontFamily = "'M PLUS Rounded 1c', sans-serif"
+	upload.style.fontFamily = "'M PLUS Rounded 1c', sans-serif";
+	upload.class = "btn btn-primary";
+	upload.role = "button";
+	upload.style.textAlign = "center";
 	
 	upload.addEventListener("click", function(event){
 		  var xhr=new XMLHttpRequest();
