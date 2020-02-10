@@ -128,14 +128,11 @@ function createDownloadLink(blob) {
 	au.src = url;
 	
 	//upload link
-	var upload = document.createElement('a');
+	var upload = document.createElement('BUTTON');
 	upload.href="#";
 	upload.innerHTML = "録音をアップロード";
-	upload.style.fontSize = "30px";
 	upload.style.fontFamily = "'M PLUS Rounded 1c', sans-serif";
-	upload.class = "btn btn-primary";
-	upload.role = "button";
-	upload.style.textAlign = "center";
+	upload.className = "btn btn-primary btn-lg";
 	
 	upload.addEventListener("click", function(event){
 		  var xhr=new XMLHttpRequest();
