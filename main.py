@@ -70,7 +70,11 @@ def result():
 @app.route("/synthesize", methods=['POST', 'GET'])
 def synthesize():
     if request.method == "POST":
-        ssml = '<speak><prosody rate="slow">' + request.form['text'] + '</prosody></speak>'
+        if request.form['Radio'] == 'normal':
+            ssml = '<speak><prosody rate="slow">' + request.form['text'] + '</prosody></speak>'
+        else:
+            ssml = '<speak>' + request.form['text'] + '</speak>'    
+            
         accent = request.form['accent']
         voiceid = next(voice for voice in request.form.getlist('voiceId[]') if accent in voice)
         os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="credentials.json"
