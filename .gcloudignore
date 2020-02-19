@@ -21,5 +21,7 @@ __pycache__/
 # Pipenv
 Pipfile
 Pipfile.lock
+
 .venv
 .vscode
+README.md
