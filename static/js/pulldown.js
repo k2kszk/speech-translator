@@ -1,3 +1,4 @@
+//.speech/pulldown.js
 // ▼HTMLの読み込み直後に実行：
 document.addEventListener('DOMContentLoaded', function() {
 
