@@ -34,10 +34,12 @@
 
 <body>
     
-    <form action="/synthesize" method="POST">
+   <form action="/synthesize" method="POST">
+      <br>
+      <textarea id="text" class="form-control" name="text" maxlength="3000" minlength="1">{{ translationresult }}</textarea>
 
       <div class="pulldownset">
-<br>
+         <br>
          <!-- ========================================== -->
          <select id="accent" class="mainselect form-control" name="accent">
             <option value="">アクセントを選んでください。</option>
@@ -46,7 +48,7 @@
             <option value="en-AU">オーストラリア</option>
             <option value="en-IN">インド</option>
          </select>
-<br>   
+         <br>   
          <!-- ================================================================ -->
          <select id="en-US" class="subbox form-control" name="voiceId[]">
             <option value="">音声を選んでください。</option>
@@ -83,22 +85,21 @@
             <option value="en-IN-Wavenet-B">ハリッシュ</option>
             <option value="en-IN-Wavenet-C">サイ</option>
          </select>
-<br>
-<br>   
+         <br>
       </div>
-      <textarea id="text" class="form-control" name="text" maxlength="3000" minlength="1">{{ translationresult }}</textarea>
-<br>
-<div style="text-align:center">
-<div class="custom-control custom-radio custom-control-inline" style="font-family:'M PLUS Rounded 1c', sans-serif; font-size:24px">
-   <input type="radio" id="customRadioInline1" name="Radio" class="custom-control-input" value="normal" checked>
-   <label class="custom-control-label" for="customRadioInline1">普通</label>
- </div>
- <div class="custom-control custom-radio custom-control-inline" style="font-family:'M PLUS Rounded 1c', sans-serif; font-size:24px">
-   <input type="radio" id="customRadioInline2" name="Radio" class="custom-control-input" value="fast">
-   <label class="custom-control-label" for="customRadioInline2">速い</label>
- </div>
-</div>
- <br>
+
+      <br>
+      <div style="text-align:center">
+         <div class="custom-control custom-radio custom-control-inline" style="font-family:'M PLUS Rounded 1c', sans-serif; font-size:24px">
+            <input type="radio" id="customRadioInline1" name="Radio" class="custom-control-input" value="normal" checked>
+            <label class="custom-control-label" for="customRadioInline1">普通</label>
+         </div>
+         <div class="custom-control custom-radio custom-control-inline" style="font-family:'M PLUS Rounded 1c', sans-serif; font-size:24px">
+            <input type="radio" id="customRadioInline2" name="Radio" class="custom-control-input" value="fast">
+            <label class="custom-control-label" for="customRadioInline2">速い</label>
+         </div>
+      </div>
+      <br>
       <div style="text-align:center">
          <input id="download" class="btn btn-primary" type="submit" value="音声をダウンロード">
       </div>
